@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./public/assets/bot.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="./public/assets/bot.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="chat__container">
+    <div id="chat__container__chats__content">
+        <div id="chat__container__chat__user">
+            <div id="chat__container__chat__message">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cum cupiditate ea enim eos
+                    est exercitationem fugit illo, impedit laudantium minus numquam provident quas quod ratione
+                    repudiandae sed, unde.asdasdsaaaaaaa
+                asdasdassssssssssddddddsdasdas</p>
+            </div>
+            <img src="public/assets/user.svg"/>
+        </div>
+        <div id="chat__container__chat__bot">
+            <img src="public/assets/bot.svg"/>
+            <div id="chat__container__chat__bot__message"><p></p></div>
+        </div>
+    </div>
+    <form id="chat__container__form">
+        <input type="text" id="chat__container__form__input" placeholder="What's looking for ?"/>
+        <button type="button" id="chat__container__form__submit"></button>
+    </form>
+</div>
+
+<script type="module" src="/main.js"></script>
+</body>
 </html>
