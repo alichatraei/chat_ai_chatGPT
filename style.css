@@ -52,7 +52,7 @@ body {
 }
 
 #chat__container__form__submit {
-    background-image: url('./public/assets/submit-button.svg');
+    background-image: url('/assets/submit-button.svg');
     width: 3rem;
     height: 100%;
     outline: none;
@@ -70,24 +70,39 @@ body {
     overflow-y: auto;
 }
 
-#chat__container__chat__user {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+.chat__container__chat {
     color: white;
     margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
 }
 
-#chat__container__chat__user img {
-    padding-left: 1rem;
-    width: 7rem;
+.chat__container__chat img {
+
+    padding: 0 0.9rem;
+    min-width: 4vw;
 }
 
-#chat__container__chat__message, #chat__container__chat__bot__message {
+.user {
+    display: flex;
+    flex-direction: row-reverse;
+    color: white;
+    width: 100%;
+}
+
+.bot {
+    display: flex;
+    color: white;
+}
+
+
+#chat__container__chat__message {
     padding: .8rem;
     border: 1px solid #2F83E4;
     border-radius: 5px;
     font-size: 1rem;
+    width: 100%;
+    height: 5rem;
 }
 
 #chat__container__chat__bot {
@@ -98,17 +113,17 @@ body {
     padding-right: 1rem;
 }
 
-#chat__container__chat__bot__message{
+#chat__container__chat__bot__message {
     width: 100%;
 }
 
-#chat__container__chat__bot__message p{
+#chat__container__chat__bot__message p {
     display: inline;
     line-height: 1.5rem;
     width: auto;
     padding-right: .5rem;
     border-right: .3rem solid white;
-    animation:  blink-caret .75s step-end infinite;
+    animation: blink-caret .75s step-end infinite;
 }
 
 #chat__container__chat__bot img {
@@ -124,4 +139,11 @@ body {
     50% {
         border-color: white;
     }
+}
+
+@media only screen and (max-width: 600px) {
+    #chat__container {
+        width: 90%;
+    }
+
 }
