@@ -3,14 +3,13 @@ import * as dotenv from 'dotenv'
 import express from 'express'
 import {Configuration, OpenAIApi} from "openai";
 
-
 dotenv.config()
-const app = express()
+console.log(process.env.OPENAI_API_KEY)
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY
 })
 const openai = new OpenAIApi(configuration)
-
+const app = express()
 app.use(cors())
 app.use(express.json())
 
@@ -20,16 +19,18 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     try {
-        const question = res.body.question
-        const response = openai.createConnection({
-            model: "text-davinci-003",
+        const question = req.body.question
+        const response = await openai.createCompletion({
+            model:"text-davinci-003",
             prompt: question,
-            temperature: 0.7,
-            max_tokens: 150,
+            temperature: 0,
+            max_tokens: 200,
             top_p: 1,
-            frequency_penalty: 0.0,
-            presence_penalty: 0.6,
+            frequency_penalty: 0.2,
+            presence_penalty: 0,
+            stop: ["\"\"\""]
         })
+        console.log(response)
         res.status(200).send({
             body: response.data.choices[0].text
         })
