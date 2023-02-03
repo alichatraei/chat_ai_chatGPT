@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 html, body {
@@ -26,6 +27,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
 }
 
 #chat__container__form {
@@ -67,6 +69,7 @@ body {
 #chat__container__chats__content {
     width: 100%;
     height: 90%;
+    padding: 2rem;
     overflow-y: auto;
 }
 
@@ -78,7 +81,6 @@ body {
 }
 
 .chat__container__chat img {
-
     padding: 0 0.9rem;
     min-width: 4vw;
 }
@@ -96,54 +98,38 @@ body {
 }
 
 
-#chat__container__chat__message {
+.chat__container__chat__message {
     padding: .8rem;
     border: 1px solid #2F83E4;
     border-radius: 5px;
     font-size: 1rem;
     width: 100%;
-    height: 5rem;
+    min-height: 5rem;
+    line-break: anywhere;
 }
 
-#chat__container__chat__bot {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    color: white;
-    padding-right: 1rem;
-}
-
-#chat__container__chat__bot__message {
-    width: 100%;
-}
-
-#chat__container__chat__bot__message p {
-    display: inline;
-    line-height: 1.5rem;
-    width: auto;
-    padding-right: .5rem;
-    border-right: .3rem solid white;
-    animation: blink-caret .75s step-end infinite;
-}
-
-#chat__container__chat__bot img {
-    padding-right: 1rem;
-    width: 6rem;
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-    from, to {
-        border-color: transparent
-    }
-    50% {
-        border-color: white;
-    }
+.chat__container__chat__message pre{
+    line-height: 3rem;
+    line-break: auto;
+    white-space: pre-wrap;
 }
 
 @media only screen and (max-width: 600px) {
     #chat__container {
         width: 90%;
     }
-
+    .chat__container__chat {
+        color: white;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .chat__container__chat img {
+        margin-bottom: 1rem;
+        width: 5rem;
+    }
+    #chat__container__chats__content{
+        padding: 2rem;
+    }
 }

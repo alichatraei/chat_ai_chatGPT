@@ -20,6 +20,7 @@ const typeText = (element, text) => {
     let index = 0;
     let interval = setInterval(() => {
         if (index < text.length) {
+
             element.innerHTML += text.charAt(index)
             index++
         } else {
@@ -41,19 +42,19 @@ const generateUniqueId = () => {
 const generateChatStripe = (isAi, value, uniqueId) => {
     return `<div class="chat__container__chat ${isAi ? 'bot' : 'user'}">
             <img src="${isAi ? bot : user}" alt="${isAi ? 'bot-icon' : 'user-icon'}"/>
-            <div id="chat__container__chat__message">
-                <p id="${uniqueId}">${value}</p>
+            <div class="chat__container__chat__message">
+            <pre id="${uniqueId}">${value}</pre>
             </div>
         </div>
         `
 }
 
-const onSubmit = (e) => {
+const onSubmit = async (e) => {
     e.preventDefault()
 
     const data = new FormData(form)
 
-    chatContainer.innerHTML += generateChatStripe(false, data.get('input'))
+    chatContainer.innerHTML += generateChatStripe(false, data.get('question'))
 
     form.reset()
 
@@ -64,6 +65,26 @@ const onSubmit = (e) => {
 
     const messageDiv = document.querySelector(`#${uniqueId}`)
     loader(messageDiv)
+
+    const response = await fetch('http://localhost:5000', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({question: data.get('question')})
+    })
+
+    clearInterval(loadInterval)
+    messageDiv.innerHTML = ''
+
+    if (response.ok) {
+        const result = await response.json()
+        const parsedData = result.body.trim()
+        typeText(messageDiv, parsedData)
+    } else {
+        messageDiv.innerHTML = "Something went wrong"
+    }
+
 }
 
 form.addEventListener('submit', onSubmit)
